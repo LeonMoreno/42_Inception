@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: ./requirements/nginx
+    ports:
+      - "80:80"
+    container_name: "nginx"
+    restart: always
+    networks:
+      - brnet
+    volumes:
+      - web_data:/code  
+    depends_on:
+      - wordpress
+
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: "wordpress"
+    restart: always
+    networks:
+      - brnet
+    volumes:
+         - web_data:/code
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    restart: always
+    networks:
+      - brnet
+    volumes:
+      - db_data:/var/lib/mysql
+    env_file:
+      - .env
+    
+
+# Differences between user-defined bridges and the default bridge
+# User-defined bridges provide automatic DNS resolution between containers.
+# si no tendria q utilizar (--link flag) para crear vinculos entre los containers.
+# - User-defined bridges provide better isolation.
+# - All containers without a --network specified, are attached to the default bridge network
+# - Remember, the default bridge network is not recommended for production.
+networks:
+    brnet:
+      name: brnet
+      driver: bridge
+      ipam:
+        config:
+         - subnet: 172.16.0.0/29
+
+volumes:
+  web_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/data/web_data
+  
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/data/db_data
+  
