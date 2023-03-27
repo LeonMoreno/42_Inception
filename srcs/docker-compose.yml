@@ -24,8 +24,6 @@ services:
          - web_data:/code
     depends_on:
       - mariadb
-    env_file:
-      - .env
 
   mariadb:
     build: ./requirements/mariadb
