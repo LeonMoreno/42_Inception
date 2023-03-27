@@ -23,7 +23,6 @@ all: $(NAME)
 
 $(NAME) :
 		@$(MK) ~/data/web_data ~/data/db_data
-		@echo "hola" $(ENV)
 		@echo "Building Images ..."
 		$(DKC) $(DKFILE) build
 		@echo "Up containers"
