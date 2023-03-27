@@ -1,3 +1,6 @@
+FLUSH PRIVILEGES;
+ALTER USER root@localhost IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
+
 CREATE DATABASE wordpress;
 CREATE USER 'wordpress'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%';
