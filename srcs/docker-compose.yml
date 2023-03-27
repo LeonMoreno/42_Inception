@@ -24,8 +24,6 @@ services:
          - web_data:/code
     depends_on:
       - mariadb
-    env_file:
-      - .env
 
   mariadb:
     build: ./requirements/mariadb
@@ -35,9 +33,6 @@ services:
       - brnet
     volumes:
       - db_data:/var/lib/mysql
-    env_file:
-      - .env
-    
 
 # Differences between user-defined bridges and the default bridge
 # User-defined bridges provide automatic DNS resolution between containers.
