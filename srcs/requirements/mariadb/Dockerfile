@@ -10,8 +10,8 @@ RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql --rpm --skip-test-db
 # RUN mysql_install_db --user=root --datadir=/var/lib/mysql --rpm --skip-test-db > /dev/null
 
 # Para el sock -- i know whatis the sock.
-# RUN mkdir -p /var/run/mysqld
-# RUN chown -R mysql:mysql /var/run/mysqld
+RUN mkdir -p /var/run/mysqld
+RUN chown -R mysql:mysql /var/run/mysqld
 
 #COPY mariadb.conf /etc/mysql/
 COPY init.sql /docker-entrypoint-initdb.d/
