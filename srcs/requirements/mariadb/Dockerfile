@@ -15,6 +15,9 @@ RUN chown -R mysql:mysql /var/run/mysqld
 
 #COPY mariadb.conf /etc/mysql/
 COPY init.sql /docker-entrypoint-initdb.d/
+COPY run.sh /root/
+
+ENTRYPOINT [ "/root/run.sh" ]
 
 CMD ["mysqld", "--user=mysql", "--console", "--socket=/var/run/mysqld/mysqld.sock"]
 
