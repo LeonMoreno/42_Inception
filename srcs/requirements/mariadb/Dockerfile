@@ -6,7 +6,10 @@ LABEL version="1.0"
 
 RUN apk --update add --no-cache mariadb mariadb-client
 
-RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql --rpm --skip-test-db
+RUN if [ ! -d "/var/lib/mysql/mysql" ]; then \
+echo "hola mi leo" \
+mysql_install_db --user=mysql --datadir=/var/lib/mysql --rpm --skip-test-db \
+fi
 # RUN mysql_install_db --user=root --datadir=/var/lib/mysql --rpm --skip-test-db > /dev/null
 
 # Para el sock -- i know whatis the sock.
