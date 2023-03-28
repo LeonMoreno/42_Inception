@@ -10,7 +10,7 @@ services:
     networks:
       - ${NET}
     volumes:
-      - web_data:/code  
+      - web_data:/var/www/html  
     depends_on:
       - wordpress
     env_file:
@@ -23,7 +23,7 @@ services:
     networks:
       - ${NET}
     volumes:
-         - web_data:/code
+         - web_data:/var/www/html
     depends_on:
       - mariadb
 
