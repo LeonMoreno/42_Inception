@@ -8,6 +8,7 @@ if [ -d $DB_DIR ]; then
 else
   echo "$WP_DB_NAME DOES NOT EXIST; CREATING $WP_DB_NAME"
   touch /tmp/db_init.sql
+  echo "POr aqui ESTUVWE" > /root/aqi
   echo "FLUSH PRIVILEGES;" > /tmp/db_init.sql
   echo "ALTER USER root@localhost IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';" >> /tmp/db_init.sql
   echo "CREATE DATABASE $WP_DB_NAME;" >> /tmp/db_init.sql
@@ -16,8 +17,14 @@ else
   echo "FLUSH PRIVILEGES;" >> /tmp/db_init.sql
   echo "EXIT;" >> /tmp/db_init.sql
 
-  mysqld --user=mysql --console --socket=/var/run/mysqld/mysqld.sock < /tmp/db_init.sql
+  mysqld --user=mysql --bootstrap < /tmp/db_init.sql
   rm /tmp/db_init.sql
+  echo "[INFO] mysql init process done. Start up."
 fi
 
-exec "$@"
+# allow remote connections
+sed -i "s|.*skip-networking.*|# skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
+sed -i "s|.*bind-address\s*=.*|bind-address=mariadb|g" /etc/my.cnf.d/mariadb-server.cnf
+
+exec mysqld --user=mysql --console
+
