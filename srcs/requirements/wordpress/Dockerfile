@@ -11,10 +11,13 @@ RUN apk --update add --no-cache php7 php7-fpm php7-phar php7-json php7-mysqli \
 	&& chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /usr/local/bin/wp
 
+EXPOSE 9000
+
 # php fpm
 COPY ./conf/www.conf /etc/php7/php-fpm.d/www.conf
 
-EXPOSE 9000
+# install wp and start
+COPY ./conf/docker-entrypoint.sh /tmp/
 
 ENTRYPOINT [ "/tmp/docker-entrypoint.sh" ]
 
