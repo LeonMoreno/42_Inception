@@ -8,6 +8,8 @@ RUN apk --update add --no-cache nginx
 
 COPY ./conf/default.conf /etc/nginx/http.d/default.conf
 
+RUN echo ${NET} > /root/hola
+
 EXPOSE 80/tcp
 
 # https://stackoverflow.com/questions/18861300/how-to-run-nginx-within-a-docker-container-without-halting
