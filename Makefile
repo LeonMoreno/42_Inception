@@ -37,7 +37,7 @@ clean:
 	$(DKC) $(DKFILE) down --rmi all
 
 vclean:
-	@docker volume prune
+	@docker volume rm $(shell docker volume ls -q)
 
 fclean: clean vclean
 

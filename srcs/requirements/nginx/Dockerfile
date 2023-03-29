@@ -7,8 +7,10 @@ LABEL version="1.0"
 RUN apk --update add --no-cache nginx 
 
 COPY ./conf/default.conf /etc/nginx/http.d/default.conf
+COPY ./cert/certi.crt /etc/ssl/certs/certi.crt
+COPY ./cert/keyssl.key /etc/ssl/private/keyssl.key
 
-EXPOSE 80/tcp
+EXPOSE 443/tcp
 
 # https://stackoverflow.com/questions/18861300/how-to-run-nginx-within-a-docker-container-without-halting
 # To run in foreground: daemon off;

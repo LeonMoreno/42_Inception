@@ -33,7 +33,7 @@ if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
                     --admin_password=$WP_ADMIN_PASS \
                     --admin_email=$WP_ADMIN_MAIL \
                     --skip-email \
-                    --url=$DOMAIN_NAME \
+                    --url=$DOMAIN_NAME/wordpress \
                     --path="/var/www/html/wordpress"
     # wp user create --allow-root \
     #                 $WP_DB_USER \
