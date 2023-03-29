@@ -26,7 +26,7 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
                     --dbhost=$MYSQL_HOSTNAME \
                     --dbcharset="utf8" \
                     --dbcollate="utf8_general_ci" \
-                    --path="/var/www/html"
+                    --path="/var/www/html/wordpress"
     wp core install --allow-root \
                     --title="WP Incepcion" \
                     --admin_name=$WP_ADMIN_USER \
@@ -34,15 +34,15 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
                     --admin_email=$WP_ADMIN_MAIL \
                     --skip-email \
                     --url=$DOMAIN_NAME \
-                    --path="/var/www/html"
+                    --path="/var/www/html/wordpress"
     wp user create --allow-root \
                     $WP_DB_USER \
                     $WP_ADMIN_MAIL \
                     --role=author \
                     --user_pass=$WP_DB_PASSWORD \
-                    --path="/var/www/html"
+                    --path="/var/www/html/wordpress"
 
-    echo "WORDPRESS INSTALLED SUCCESSFULLY"
+    echo "WP Installed"
 
 
 
