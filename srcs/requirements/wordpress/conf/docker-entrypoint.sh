@@ -11,7 +11,7 @@ while ! mariadb -h$MYSQL_HOSTNAME -u$WP_DB_USER -p$WP_DB_PASSWORD $WP_DB_NAME --
 done
 
 # check if wordpress is installed
-if [ ! -f "/var/www/html/wp-config.php" ]; then
+if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
 	echo "[INFO] installing wordpress..."
 
 	wp core download --path=/var/www/html/wordpress --locale=es_CO
@@ -35,12 +35,12 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
                     --skip-email \
                     --url=$DOMAIN_NAME \
                     --path="/var/www/html/wordpress"
-    wp user create --allow-root \
-                    $WP_DB_USER \
-                    $WP_ADMIN_MAIL \
-                    --role=author \
-                    --user_pass=$WP_DB_PASSWORD \
-                    --path="/var/www/html/wordpress"
+    # wp user create --allow-root \
+    #                 $WP_DB_USER \
+    #                 $WP_ADMIN_MAIL \
+    #                 --role=author \
+    #                 --user_pass=$WP_DB_PASSWORD \
+    #                 --path="/var/www/html/wordpress"
 
     echo "WP Installed"
 
