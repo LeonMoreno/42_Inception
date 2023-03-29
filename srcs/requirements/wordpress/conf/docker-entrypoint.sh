@@ -1,35 +1,26 @@
 #!/bin/sh
 
+# How to do
+# https://blog.sucuri.net/2022/11/wp-cli-how-to-install-wordpress-via-ssh.html
+# https://make.wordpress.org/cli/handbook/how-to/how-to-install/
+
 # wait until database is ready
-while ! mariadb -h$MYSQL_HOST -u$WP_DB_USER -p$WP_DB_PASSWORD $WP_DB_NAME --silent; do
-	echo "[INFO] waiting for database..."
-	sleep 1;
+while ! mariadb -h$MYSQL_HOSTNAME -u$WP_DB_USER -p$WP_DB_PASSWORD $WP_DB_NAME --silent; do
+	echo "[INFO] waiting for db..."
+	sleep 2;
 done
-
-for i in {0..27}
-do
-	echo "[INFO] waiting for database..."
-	if mariadb -h$MYSQL_HOST -u$WP_DB_USER -p$WP_DB_PASSWORD $WP_DB_NAME --silent
-	then
-		break
-	fi
-done
-
-if ( $i = 27 )
-then
-	echo "[INFO] Can't connect to db sorry..."
 
 # check if wordpress is installed
 if [ ! -f "/var/www/html/wp-config.php" ]; then
 	echo "[INFO] installing wordpress..."
 
-# 	# wp-cli
-# 	wp core download --allow-root
-# 	wp config create --dbname=$WP_DB_NAME --dbuser=$WP_DB_USER --dbpass=$WP_DB_PASSWORD \
-# 		--dbhost=$MYSQL_HOST --dbcharset="utf8" --dbcollate="utf8_general_ci" --allow-root
-# 	wp core install --url=$DOMAIN_NAME/wordpress --title=$WP_TITLE --admin_user=$WP_ADMIN_USER \
-# 		--admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root
-# 	wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PASSWORD --allow-root
+	wp core download --path=/var/www/html/wordpress --locale=es_CO
+	cd /var/www/html/wordpress
+	wp config create --dbhost=$MYSQL_HOSTNAME --dbname=$WP_DB_NAME \
+	       	--dbuser=$WP_DB_USER --dbpass=$WP_DB_PASSWORD
+	#wp db install
+	wp core install --url=$DOMAIN_NAME/wordpress --title="WP Inceptions" \
+	       	--admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_MAIL
 # 	wp theme install ryu --activate --allow-root
 
 # 	# redis

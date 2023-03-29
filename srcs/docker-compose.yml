@@ -24,6 +24,8 @@ services:
       - ${NET}
     volumes:
          - web_data:/var/www/html
+    env_file:
+      - .env
     depends_on:
       - mariadb
 
