@@ -4,11 +4,13 @@ LABEL description="NGINX project Inception 42"
 LABEL maintener="By LeoMoreno <lmoreno@student.42quebec.com>"
 LABEL version="1.0"
 
-RUN apk --update add --no-cache nginx 
+RUN apk --update add --no-cache nginx \
+	&& mkdir -p /var/www/static
 
 COPY ./conf/default.conf /etc/nginx/http.d/default.conf
 COPY ./cert/certi.crt /etc/ssl/certs/certi.crt
 COPY ./cert/keyssl.key /etc/ssl/private/keyssl.key
+COPY ./site/pagina.html /var/www/static
 
 EXPOSE 443/tcp
 
