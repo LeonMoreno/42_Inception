@@ -22,7 +22,7 @@ DKFILE	= srcs/docker-compose.yml
 all: $(NAME)
 
 $(NAME) :
-		@$(MK) ~/data/web_data ~/data/db_data
+		@$(MK) ~/data/web_data ~/data/db_data ~/data/admi_data
 		@echo "Building Images ..."
 		$(DKC) $(DKFILE) build
 		@echo "Up containers"
