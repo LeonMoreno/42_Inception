@@ -22,7 +22,7 @@ DKFILE	= srcs/docker-compose.yml
 all: $(NAME)
 
 $(NAME) :
-		@$(MK) ~/data/web_data ~/data/db_data
+		@$(MK) ~/data/web_data ~/data/db_data ~/data/admi_data
 		@echo "Building Images ..."
 		$(DKC) $(DKFILE) build
 		@echo "Up containers"
@@ -37,7 +37,7 @@ clean:
 	$(DKC) $(DKFILE) down --rmi all
 
 vclean:
-	@docker volume prune
+	@docker volume rm $(shell docker volume ls -q)
 
 fclean: clean vclean
 

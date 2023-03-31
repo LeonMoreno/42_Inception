@@ -4,13 +4,16 @@ services:
   nginx:
     build: ./requirements/nginx
     ports:
-      - "80:80"
+      - "443:443"
+      - "8080:8080"
+      - "8090:8090"
     container_name: "nginx"
     restart: always
     networks:
       - ${NET}
     volumes:
       - web_data:/var/www/html  
+      - admi_data:/var/www/adminer
     depends_on:
       - wordpress
     env_file:
@@ -31,7 +34,7 @@ services:
 
   mariadb:
     build: ./requirements/mariadb
-    container_name: mariadb
+    container_name: "mariadb"
     restart: always
     networks:
       - ${NET}
@@ -39,7 +42,38 @@ services:
       - db_data:/var/lib/mysql
     env_file:
       - .env
-    
+
+  adminer:
+    build: ./requirements/bonus/adminer
+    container_name: "adminer"
+    restart: always
+    networks:
+      - ${NET}
+    volumes:
+      - admi_data:/var/www/adminer
+    depends_on:
+      - mariadb
+
+  pureftpd:
+    build: ./requirements/bonus/pureftp
+    container_name: "pure-ftpd"
+    restart: always
+    ports:
+      - "21:21"
+    networks:
+      - ${NET}
+    volumes:
+      - web_data:/home/leo
+    depends_on:
+      - wordpress
+
+  redis:
+    build: ./requirements/bonus/redis
+    container_name: "redis"
+    restart: always
+    networks:
+      - ${NET}
+
 # Differences between user-defined bridges and the default bridge
 # User-defined bridges provide automatic DNS resolution between containers.
 # si no tendria q utilizar (--link flag) para crear vinculos entre los containers.
@@ -52,7 +86,7 @@ networks:
       driver: bridge
       ipam:
         config:
-         - subnet: 172.16.0.0/29
+         - subnet: 172.16.0.0/28
 
 volumes:
   web_data:
@@ -68,4 +102,11 @@ volumes:
       type: none
       o: bind
       device: ${HOME}/data/db_data
+  
+  admi_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/data/admi_data
   
