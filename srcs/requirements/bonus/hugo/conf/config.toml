@@ -1,7 +1,0 @@
-theme = "m10c"
-paginate = 8
-canonifyURLs = true
-
-[params]
-  author = "Leonardo Moreno"
-  description = "Static web with Hugo for inception project"
