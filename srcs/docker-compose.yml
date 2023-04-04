@@ -73,6 +73,15 @@ services:
     restart: always
     networks:
       - ${NET}
+  
+  portafolio:
+    build: ./requirements/bonus/portafolio
+    container_name: "portafolio"
+    restart: always
+    ports:
+      - "1313:1313"
+        #networks:
+        # - ${NET}
 
 # Differences between user-defined bridges and the default bridge
 # User-defined bridges provide automatic DNS resolution between containers.

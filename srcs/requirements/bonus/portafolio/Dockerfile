@@ -14,6 +14,7 @@ RUN     apk --update add --no-cache \
 EXPOSE 1313
 
 COPY ./conf/docker-entrypoint.sh /tmp/
+COPY ./conf/config.toml /tmp/
 
 ENTRYPOINT [ "/tmp/docker-entrypoint.sh" ]
 

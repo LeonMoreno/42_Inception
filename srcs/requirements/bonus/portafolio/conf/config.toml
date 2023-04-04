@@ -1,0 +1,78 @@
+baseURL = ''
+languageCode = 'en-us'
+title = 'My Portafolio'
+theme = 'hugo-theme-shell'
+
+[Params]
+  # Note: This is for the meta description, which is different from the "description" displayed in the terminal.
+  description = "Jane Doe's Portfolio!"
+  [Params.Terminal]
+  # Note: color schema
+  # Note: You can choose between
+  # Note: ["monokai", "powershell", "gruvbox_light", "gruvbox_dark", "solarized_light", "solarized_dark", "ubuntu", "retro"]
+  # Note: If you want to use the Goph theme, set it to "goph" (See README.md)
+  schema = "monokai"
+
+  # Note: in terminal
+  # [userName]@[pcName]:~/$ cd [workDir]
+  # [userName]@[pcName]:~/[workDir]$ cat [profile]
+  #
+  # [description]
+  #
+  # Note: if you set Params.Tree > use = true
+  # [userName]@[pcName]:~/[workDir]$ tree ./[folderName]/
+  # ./[folderName]/
+  # ...
+  # Note: result of the tree command
+  userName = "leo"
+  pcName = "arch"
+  workDir = "MyPortafolio"
+  profile = "profile.txt"
+
+
+  # Note: speed at which text is displayed on the terminal
+  # Note: if set to 0, typing animation will be disabled
+  # Note:
+  # Note: if you want to enable Mathjax, you need to set it to 0
+  # Note: and set "math: true" at front matter in your Markdown file
+  ps1Delay = 0 # prompt speed : [userName]@[pcName]:~/$ , [userName]@[pcName]:~/[workDir]$
+  stdoutDelay = 0 # stdout speed : [description] , files in Params.Tree
+  commandDelay = 50 # command speed : cd [workDir] , cat [profile] , tree ./[folderName]/
+
+  # terminalDelay = 20 : deprecated
+
+  # Note: speed at which text is displayed on the activity pages
+  # Note: if set to 0, typing animation will be disabled
+  # Note: 
+  # Note: if you want to enable Mathjax, you need to set it to 0
+  # Note: and set "math: true" at front matter in your Markdown file
+  titleDelay = 0 # title speed : "title" in front matter
+  contentDelay = 0 # content speed : content in .md file
+
+  # activityDelay = 5 : deprecated
+
+  description = """
+ 
+  Hi I am Leonardo Moreno!
+  I am an entrepreneur, happy, curious and resilient, 
+  passionate about IT and always ready to learn.
+  With more than 15 years of experience as a network /
+  systems administrator and IT support, and soon 
+  I will complete my training as a Full Stack developer
+
+ Here is my portfolio:
+ 
+  """
+[Params.Tree]
+  use = true
+  folderName = "my_activity"
+  # Note: ["ACTIVITY", "URL or PATH TO YOUR MARKDOWN FILE"]
+  files = [ 
+    ["MiniShell", "https://github.com/LeonMoreno/minishell"],
+    ["So_LONG", "https://github.com/LeonMoreno/so_long"],
+    ["PiPEX", "https://github.com/LeonMoreno/pipex"],
+    ["ft_containers", "https://github.com/LeonMoreno/ft_containers"],
+    ["get_Next_Line", "https://github.com/LeonMoreno/Get-Next-Line"],
+    ["ft_printf", "https://github.com/LeonMoreno/ft_printf"],
+  ]
+
