@@ -2,6 +2,9 @@
 
 In this project, I significantly expanded my skills in system administration by configuring a comprehensive infrastructure using Docker. I deployed multiple services in Docker containers using docker-compose, ensuring adherence to strict configuration and deployment rules.
 
+![image](https://github.com/LeonMoreno/42_Inception/assets/88601147/ca6de83b-e1ab-4c0b-b5b1-e5377ed1b68c)
+
+
 ## Overview
 
 Throughout this project, I achieved the following:
@@ -57,8 +60,6 @@ To ensure robust deployment and adherence to best practices, the following guide
 
 
 ## Project Achievements
-
-This project allowed me to:
 
 - Develop advanced skills in configuring and managing Docker containers.
 - Implement optimal practices to ensure the performance and security of deployed services.
