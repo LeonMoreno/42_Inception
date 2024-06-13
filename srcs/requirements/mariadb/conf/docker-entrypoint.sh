@@ -4,11 +4,11 @@ DB_DIR=/var/lib/mysql/$WP_DB_NAME
 
 # init wp_db && update root pass add creat user+pass
 if [ -d $DB_DIR ]; then
-  echo "$WP_DB_NAME IS ALREADY."
+  echo "$WP_DB_NAME IS ALREADY LEO AQUI."
 else
-  echo "$WP_DB_NAME DOES NOT EXIST; CREATING $WP_DB_NAME"
+  echo "[INFO] $WP_DB_NAME DOES NOT EXIST; CREATING $WP_DB_NAME"
   touch /tmp/db_init.sql
-  echo "POr aqui ESTUVWE" > /root/aqi
+  echo "[INFO] POr aqui VOYY"
   echo "FLUSH PRIVILEGES;" > /tmp/db_init.sql
   echo "ALTER USER root@localhost IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';" >> /tmp/db_init.sql
   echo "CREATE DATABASE $WP_DB_NAME;" >> /tmp/db_init.sql

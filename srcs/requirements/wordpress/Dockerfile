@@ -19,6 +19,8 @@ COPY ./conf/www.conf /etc/php7/php-fpm.d/www.conf
 # install wp and start
 COPY ./conf/docker-entrypoint.sh /tmp/
 
+WORKDIR /var/www/html/
+
 ENTRYPOINT [ "/tmp/docker-entrypoint.sh" ]
 
 # CMD [ "php-fpm7", "-F"]
